@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main {
 
 	static Scanner input;
+//ADD	
 	static void avehicle()
 	{
 		input = new Scanner(System.in);
@@ -271,11 +272,125 @@ static void aaccident()
     }
 }
 
+//DELETE
+static void dvehicle()
+{
+	input = new Scanner(System.in);
+	System.out.println("--------------------------");
+    System.out.println();
+    System.out.print("Enter Registration Number : ");
+    String Regno = input.next();
+    Vehicle v = Controller.return_vehicle(Regno);
+
+    if(v == null){
+        System.err.println("Vehicle does not exist");
+        System.out.println();
+        System.out.println("--------------------------");
+    }
+    else{
+    	Controller.deleteVehicle(v);
+    	}
+}
+
+static void djunction()
+{
+	input = new Scanner(System.in);
+	System.out.println("--------------------------");
+    System.out.println();
+    System.out.print("Enter Junction ID : ");
+    int JID = input.nextInt();
+    Junction jn = Controller.return_jn(JID);
+
+    if(jn == null){
+        System.err.println("Junction does not exist");
+    }
+    else{
+    	Controller.deleteJunction(jn);        
+    }
+    System.out.println();
+    System.out.println("--------------------------");
+	
+}
+
+static void droad()
+{
+	input = new Scanner(System.in);
+	System.out.println("--------------------------");
+    System.out.println();
+    Scanner input = new Scanner(System.in);
+    System.out.print("Enter Road ID : ");
+    int RID = input.nextInt();
+    input.close();
+    Road rd = Controller.return_road(RID);
+
+    if(rd == null){
+        System.err.println("Road does not exist");
+    }
+    else{
+        Controller.deleteRoad(rd);
+    }
+    System.out.println();
+    System.out.println("--------------------------");
+	
+}
+
+static void dpolice()
+{
+	input = new Scanner(System.in);
+	 System.out.println("--------------------------");
+     System.out.println();
+     System.out.print("Enter Police Station ID : ");
+     int SID = input.nextInt();
+     Police_Station ps = Controller.return_police_station(SID);
+     if(ps == null){
+         System.err.println("Police Station does not exist");
+     }
+     else{
+         System.out.println("Enter Police ID : ");
+         int pid = input.nextInt();
+         Traffic_Police police = Controller.return_police(ps,pid);
+         if(police == null){
+             System.out.println("Traffic Police does not exist");
+         }
+         else{
+             ps.Personnel.remove(police);
+         }
+         System.out.println("Police Successfully deleted");
+     }
+     System.out.println();
+     System.out.println("--------------------------");
+}
+
+static void dstation()
+{
+	input = new Scanner(System.in);
+	System.out.println("--------------------------");
+    System.out.println();
+    Scanner input = new Scanner(System.in);
+    System.out.print("Enter Police Station ID : ");
+    int SID = input.nextInt();
+    input.close();
+    Police_Station ps = Controller.return_police_station(SID);
+
+    if(ps == null){
+        System.err.println("Police Station does not exist");
+    }
+    else{
+    	Controller.deletePoliceStation(ps);
+    }
+    System.out.println();
+    System.out.println("--------------------------");
+}
+
+
+
+
+//MAIN
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-	
-		Scanner input = new Scanner(System.in);
+		input = new Scanner(System.in);
+		//Scanner input = new Scanner(System.in);
 		 int c1,c2,c,status=0;
 		  System.out.println("\t\t\t\t\t  _______         __  __ _                             \r\n"
 		  		+ "\t\t\t\t\t |__   __|       / _|/ _(_)                            \r\n"
@@ -381,9 +496,11 @@ static void aaccident()
 		  
 //END OF HARD CODE
 	
+		  
 		if (status==1)
 		{
 			//ADMIN
+			int inp1,inp2;
 			System.out.println("+-------------------------------------------+");
 			System.out.println("|		1. DISPLAY 		    |");
 			System.out.println("+-------------------------------------------+");
@@ -393,6 +510,56 @@ static void aaccident()
 			System.out.println("+-------------------------------------------+");
 			System.out.println("|		3. DELETE 		    |");
 			System.out.println("+-------------------------------------------+");
+			inp1=input.nextInt();
+			System.out.println("1. JUNCTION\n2.ROAD\n3.VEHICLE\n4.POLICE STATION\n");
+			inp2=input.nextInt();
+			switch(inp1)
+			{
+			case 1: switch(inp2)
+					{
+						case 1: Controller.listJunctions();
+								break;
+						case 2: Controller.listRoads();
+								break; 
+					    case 3: Controller.listVehicle();
+								break;
+						case 4: Controller.listStations();
+								break;	
+						default:System.err.println("INVALID INPUT");		
+					}
+					break;
+					
+			case 2: switch(inp2)
+			{
+				case 1: ajunction();
+						break;
+				case 2: aroad();
+						break;
+				case 3: avehicle();
+						break;
+				case 4: astation();
+						break;	
+				default:System.err.println("INVALID INPUT");		
+			}
+			break;	
+			
+			case 3: switch(inp2)
+			{
+				case 1: djunction();
+						break;
+				case 2: droad();
+						break;
+				case 3: dvehicle();
+						break;
+				case 4: dstation();
+						break;	
+				default:System.err.println("INVALID INPUT");		
+			}
+			break;
+			default:System.err.println("INVALID INPUT");
+			}
+			
+			
 			
 			
 			
