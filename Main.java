@@ -334,32 +334,32 @@ static void droad()
 	
 }
 
-static void dpolice()
-{
-	input = new Scanner(System.in);
-	 System.out.println("--------------------------");
-     System.out.println();
-     System.out.print("Enter Police Station ID : ");
-     int SID = input.nextInt();
-     Police_Station ps = Controller.return_police_station(SID);
-     if(ps == null){
-         System.err.println("Police Station does not exist");
-     }
-     else{
-         System.out.println("Enter Police ID : ");
-         int pid = input.nextInt();
-         Traffic_Police police = Controller.return_police(ps,pid);
-         if(police == null){
-             System.out.println("Traffic Police does not exist");
-         }
-         else{
-             ps.Personnel.remove(police);
-         }
-         System.out.println("Police Successfully deleted");
-     }
-     System.out.println();
-     System.out.println("--------------------------");
-}
+// static void dpolice()
+// {
+// 	input = new Scanner(System.in);
+// 	 System.out.println("--------------------------");
+//      System.out.println();
+//      System.out.print("Enter Police Station ID : ");
+//      int SID = input.nextInt();
+//      Police_Station ps = Controller.return_police_station(SID);
+//      if(ps == null){
+//          System.err.println("Police Station does not exist");
+//      }
+//      else{
+//          System.out.println("Enter Police ID : ");
+//          int pid = input.nextInt();
+//          Traffic_Police police = Controller.return_police(ps,pid);
+//          if(police == null){
+//              System.out.println("Traffic Police does not exist");
+//          }
+//          else{
+//              ps.Personnel.remove(police);
+//          }
+//          System.out.println("Police Successfully deleted");
+//      }
+//      System.out.println();
+//      System.out.println("--------------------------");
+// }
 
 static void dstation()
 {
