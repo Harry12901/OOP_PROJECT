@@ -287,64 +287,29 @@ public class Controller {
 
 
 //DELETE
-    public static void deleteRoad(){
-        System.out.println("--------------------------");
+    public static void deleteVehicle(Vehicle v)
+    {
+    	vehicle.remove(v);
+        System.out.println("Vehicle Successfully deleted");
         System.out.println();
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter Road ID : ");
-        int RID = input.nextInt();
-        input.close();
-        Road rd = return_road(RID);
-
-        if(rd == null){
-            System.err.println("Road does not exist");
-        }
-        else{
+        System.out.println("--------------------------");
+    }
+    
+    public static void deleteRoad(Road rd){
+        
             Roads.remove(rd);
             System.out.println("Road Successfully deleted");
-        }
-        System.out.println();
-        System.out.println("--------------------------");
+
     }
 
-    public static void deleteJunction(){
-        System.out.println("--------------------------");
-        System.out.println();
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter Junction ID : ");
-        int JID = input.nextInt();
-        input.close();
-        Junction jn = return_jn(JID);
-
-        if(jn == null){
-            System.err.println("Junction does not exist");
-        }
-        else{
+    public static void deleteJunction(Junction jn){
             Junctions.remove(jn);
             System.out.println("Junction Successfully deleted");
-        }
-        System.out.println();
-        System.out.println("--------------------------");
-    }
+      }
 
-    public static void deletePoliceStation(){
-        System.out.println("--------------------------");
-        System.out.println();
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter Police Station ID : ");
-        int SID = input.nextInt();
-        input.close();
-        Police_Station ps = return_police_station(SID);
-
-        if(ps == null){
-            System.err.println("Police Station does not exist");
-        }
-        else{
+    public static void deletePoliceStation(Police_Station ps){
             PoliceStations.remove(ps);
             System.out.println("Police Station Successfully deleted");
-        }
-        System.out.println();
-        System.out.println("--------------------------");
     }
 
    
