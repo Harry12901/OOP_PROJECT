@@ -3,21 +3,45 @@ import java.util.Scanner;
 
 public class Loginc {
 static ArrayList<User> userlist = new ArrayList<User>();
-	 
-	public static void listusers()
+static int id;
+public static void listusers()
+{
+	System.out.println("--------------------------");
+	System.out.println();
+	System.out.println("List of Users : \n");
+	for(int i = 0;i<userlist.size();i++){
+	listuser(i);		
+	}
+}
+public static void listuser(int x)
+{
+	int i= x;
+	if(i!=-1)
 	{
-		System.out.println("--------------------------");
-        System.out.println();
-        System.out.println("List of Users : \n");
-        for(int i = 0;i<userlist.size();i++){
-            System.out.print("Username : ");
-            System.out.println(userlist.get(i).username);
-            System.out.print("Password : ");
-            System.out.println(userlist.get(i).password);
-            System.out.print("Authorization : ");
-            System.out.println(userlist.get(i).authorization);
-            System.out.println();
-        }
+		System.out.print("\n ACCOUNT INFO \n");
+		System.out.print("Username : ");
+		System.out.println(userlist.get(i).username);
+		System.out.print("Password : ");
+		System.out.println(userlist.get(i).password);
+		System.out.print("Authorization : ");
+		System.out.println(userlist.get(i).authorization);
+		System.out.print("\n PERSONAL INFO \n");
+		System.out.print("Name: ");
+		System.out.println(userlist.get(i).name);
+		System.out.print("Age: ");
+		System.out.println(userlist.get(i).age);
+		System.out.print("Sex: ");
+		System.out.println(userlist.get(i).sex);
+		System.out.print("Aadhar: ");
+		System.out.println(userlist.get(i).aadhar);
+		System.out.print("Address: ");
+		System.out.println(userlist.get(i).address);
+	}
+	else
+	{
+		System.err.println("+------------------------------------------------+");
+		System.err.println("|            USER ACCOUNT DOESN'T EXIST          |");
+		System.err.println("+------------------------------------------------+");
 	}
 	
 	public static void modify(String chu)
@@ -83,7 +107,7 @@ static ArrayList<User> userlist = new ArrayList<User>();
 	{
 		for(int i = 0; i < userlist.size(); i++)
 		{
-			if(chu.equals(userlist.get(i).getusn() ))
+			if(userlist.get(i).getusn().equals(chu))
 					return i;
 		}
 		return -1;
@@ -114,8 +138,10 @@ static ArrayList<User> userlist = new ArrayList<User>();
 		}
 	
 	
-	public static boolean signup(String chu, String chp)
+	static boolean signup(String chu, String chp)
 	{
+
+		Scanner s = new Scanner(System.in);
 		if(chu!= null && chp!= null)
 		{
 			if(chu.length()>=6 && chp.length()>=6)
@@ -127,13 +153,28 @@ static ArrayList<User> userlist = new ArrayList<User>();
 
 					if (chp.matches(numRegex) && chp.matches(alphaRegex)) 
 					{
-						userlist.add(new User(chu,chp,0));
+						System.out.println("+------------------------------------------------+");
+						System.out.println("|                 ENTER AUTHORIZATION            |");
+						System.out.println("|                [NORMAL USERS ENTER 0]          |");
+						System.out.println("+------------------------------------------------+");
+						int au = Integer.parseInt(s.nextLine());
+						if(au>=0 && au<=3)
+						{
+						userlist.add(new User(chu,chp,au));
+
 						System.out.println("+------------------------------------------------+");
 						System.out.println("|       USER ACCOUNT CREATED SUCCESSFULLY!       |");
 						System.out.println("+------------------------------------------------+");
-						
 						return true;
-						
+						}
+						else
+						{
+							System.err.println("+------------------------------------------------+");
+							System.err.println("|  					INVALID                      |");
+							System.err.println("|				 AUTHORIZATION                   |");
+							System.err.println("+------------------------------------------------+");
+							return false;
+						}
 					}
 					else {
 
