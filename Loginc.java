@@ -16,6 +16,8 @@ public static void listusers()
 public static void listuser(int x)
 {
 	int i= x;
+	if(i!=-1)
+	{
 		System.out.print("\n ACCOUNT INFO \n");
 		System.out.print("Username : ");
 		System.out.println(userlist.get(i).username);
@@ -33,7 +35,13 @@ public static void listuser(int x)
 		System.out.print("Aadhar: ");
 		System.out.println(userlist.get(i).aadhar);
 		System.out.print("Address: ");
-		System.out.println(userlist.get(i).address);			
+		System.out.println(userlist.get(i).address);
+	}
+	else
+	{
+		System.err.println("+------------------------------------------------+");
+		System.err.println("|            USER ACCOUNT DOESN'T EXIST          |");
+		System.err.println("+------------------------------------------------+");
 	}
 	
 	public static void modify(String chu)
