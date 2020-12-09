@@ -491,9 +491,9 @@ public static void usermg()
 						Loginc.id = Loginc.search(x);
 					}
 					else {
-						System.out.println("+------------------------------------------------+");
+						System.err.println("+------------------------------------------------+");
 						System.err.println("|          INVALID USERNAME OR PASSWORD          |");
-						System.out.println("+------------------------------------------------+");
+						System.err.println("+------------------------------------------------+");
 						status = 0;
 					}
 				}
@@ -504,9 +504,9 @@ public static void usermg()
 				status=0;
 				}
 			else {
-				System.out.println("+------------------------------------------------+");
+				System.err.println("+------------------------------------------------+");
 				System.err.println("|          INVALID INPUT. TRY AGAIN.             |");
-				System.out.println("+------------------------------------------------+");
+				System.err.println("+------------------------------------------------+");
 				status=0;
 				
 			}
@@ -578,7 +578,7 @@ public static void usermg()
 			System.out.println("+-------------------------------------------+");
 			inp1=input.nextInt();
 			
-			if(inp1!=5 || inp1!=0){
+			if(inp1!=5 && inp1!=0){
 			System.out.println("+------------+    +--------+    +-----------+");
 			System.out.println("| 1. DISPLAY |    | 2. ADD |    | 3. DELETE |");
 			System.out.println("+------------+    +--------+    +-----------+");
@@ -627,6 +627,7 @@ public static void usermg()
 						break;
 				default:System.err.println("INVALID INPUT");		
 			}
+			break;
 			case 4: switch(inp2)
 			{
 				case 1: Controller.listStations();
@@ -636,6 +637,7 @@ public static void usermg()
 				case 3: dstation();
 					break;
 			}
+			break;
 			case 5: usermg();
 				break;
 			default:System.err.println("INVALID INPUT");
@@ -645,7 +647,7 @@ public static void usermg()
 			
 			
 			
-			if(Loginc.userlist.get(Loginc.id).getauth() == 1)
+			else if(Loginc.userlist.get(Loginc.id).getauth() == 1)
 			{
 			//TRAFFIC POLICE
 			System.out.println("+---------------------------------+                +---------------------------------+ ");
@@ -658,9 +660,10 @@ public static void usermg()
 				System.out.println("+--------------------------+");
 				System.out.println("|      LOGGING OUT...      |");
 				System.out.println("+--------------------------+");
-			status =0;
-			Loginc.id = -1;
+				status =0;
+				Loginc.id = -1;
 			}
+			
 			else if(c1 ==1||c1 ==2)
 			{
 				System.out.println("+-------------------------------------------+");
@@ -687,7 +690,7 @@ public static void usermg()
 					}
 				
 				}
-				else
+				else if (c2 == 2)
 				{
 					switch(c2)
 					{
@@ -705,13 +708,13 @@ public static void usermg()
 				System.out.println("INVALID INPUT");
 			}
 			
-			if(Loginc.userlist.get(Loginc.id).getauth() == 0)
+			else if(Loginc.userlist.get(Loginc.id).getauth() == 0)
 			{
 			//PENALTY PAY
 			System.out.println("+--------------------------+");
 			System.out.println("|   1. CHECK VIOLATION     |");
 			System.out.println("+--------------------------+");
-			inp2 = Integer.parseInt(input.nextLine());
+			inp2 = input.nextInt();
 			if(inp2 == 0) {
 				System.out.println("+--------------------------+");
 				System.out.println("|      LOGGING OUT...      |");
@@ -719,7 +722,7 @@ public static void usermg()
 				status =0;
 				Loginc.id = -1;
 			}
-			else if(inp2==1)
+			else if(inp2 == 1)
 			{
 				Controller.listVehicle();
 				 System.out.println("--------------------------");
