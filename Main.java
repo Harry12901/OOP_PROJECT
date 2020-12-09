@@ -462,7 +462,7 @@ public static void usermg()
 		Loginc.userlist.add(new User("User001", "Hello123", 0, "Harini", 19, "F", 1234567000, "CBE"));
 		input = new Scanner(System.in);
 		//Scanner input = new Scanner(System.in);
-		 int c1,c2,c,status=0;
+		 int c1,c2,c=0,status=0;
 	       System.out.println("\t\t\t\t\t  _______         __  __ _                             \r\n"
 		  		+ "\t\t\t\t\t |__   __|       / _|/ _(_)                            \r\n"
 		  		+ "\t\t\t\t\t    | |_ __ __ _| |_| |_ _  ___                        \r\n"
@@ -481,305 +481,309 @@ public static void usermg()
 		  		+ "\t\t\t\t\t |_____/ \\__, |___/\\__\\___|_| |_| |_|                  \r\n"
 		  		+ "\t\t\t\t\t          __/ |                                        \r\n"
 		  		+ "\t\t\t\t\t         |___/ ");
-		  
-		do {
-//			Loginc.listusers();
-			System.out.println("    +---------------------------------------+");
-			System.out.println("    |  WELCOME! PLEASE LOGIN IN OR SIGN UP  |");
-			System.out.println("    +---------------------------------------+");
-			
-			System.out.println("+------------+    +----------+    +-----------+");
-			System.out.println("| 0. EXIT    |    | 1. LOGIN |    | 2. SIGNUP |");
-			System.out.println("+------------+    +----------+    +-----------+");
-			System.out.println("===================================================== ");
-			c = input.nextInt();
-			if(c==0) 
-			{
-				System.out.println("THANK YOU");
-				System.exit(0);
-			}
-				
-			
-			if(c == 1 || c==2)
-			{
-				System.out.println("+------------------------------------------------+");
-				System.out.println("|             ENTER USERNAME                     |");
-				System.out.println("+------------------------------------------------+");
-				String x = input.next();
-				System.out.println("+------------------------------------------------+");
-				System.out.println("|           ENTER PASSWORD                       |");
-				System.out.println("+------------------------------------------------+");
-				String y = input.next();
-				if(c==1)
-				{
-					boolean z = Loginc.signin(x,y);
-					if(z)
-					{
-						System.out.println("+------------------------------------------------+");
-						System.out.println("|                LOGIN SUCCESSFULL!              |");
-						System.out.println("+------------------------------------------------+");
-						status = 1;
-						Loginc.id = Loginc.search(x);
-					}
-					else {
-						System.err.println("+------------------------------------------------+");
-						System.err.println("|          INVALID USERNAME OR PASSWORD          |");
-						System.err.println("+------------------------------------------------+");
-						status = 0;
-					}
-				}
-				else if(c == 2)
-				{
-				 //boolean ret = Loginc.signup(x,y);
-				Loginc.signup(x,y);
-				status=0;
-				}
-			else {
-				System.err.println("+------------------------------------------------+");
-				System.err.println("|          INVALID INPUT. TRY AGAIN.             |");
-				System.err.println("+------------------------------------------------+");
-				status=0;
-				
-			}
-			}
-		
-		}while(status==0);
-		
-//HARD CODED PART:
-		
-		Controller.addVehicle("Harry","1122");
-		Controller.addVehicle("Corpse","2211");
-		Controller.addRoad(11,"Road1",123);
-		Controller.addRoad(22,"Road2",456);
-		  
-		  ArrayList <Road> rd = new ArrayList<>();
-		  rd.add(Controller.return_road(11));
-		  rd.add(Controller.return_road(22));
-		  Controller.addJunction(11, "Junction1","One Way", rd);
-		  
-		 Traffic_Police p1=Controller.addPolice(33, "Police1",23, 10000, 2, "1c,street,NY");
-		  Traffic_Police p2=Controller.addPolice(44, "Police2",54, 100000, 4, "34,AL ave,NJ");
-		  
-		  ArrayList <Traffic_Police> tp = new ArrayList<>();
-		 tp.add(p1);
-		 tp.add(p2);
-		  ArrayList <Junction> jal = new ArrayList<>();
-		  jal.add(Controller.return_jn(11));
-		  Controller.addPoliceStation(1111, "Station1", tp, jal, 123456);
-		  
-//		  Controller.listVehicle();
-//		  Controller.listRoads();
-//		  Controller.listJunctions();
-//		  Controller.listPolice(1111);
-//		  Controller.listStations();
-		  
-//END OF HARD CODE
-	
-		  int inp1,inp2 = -1; 
-		while (status==1)
+		while(true)
 		{
+			do {
+//				Loginc.listusers();
+				System.out.println("    +---------------------------------------+");
+				System.out.println("    |  WELCOME! PLEASE LOGIN IN OR SIGN UP  |");
+				System.out.println("    +---------------------------------------+");
+				
+				System.out.println("+------------+    +----------+    +-----------+");
+				System.out.println("| 0. EXIT    |    | 1. LOGIN |    | 2. SIGNUP |");
+				System.out.println("+------------+    +----------+    +-----------+");
+				System.out.println("===================================================== ");
+				c = input.nextInt();
+				if(c==0) 
+				{
+					System.out.println("THANK YOU");
+					System.exit(0);
+				}
+					
+				
+				if(c == 1 || c==2)
+				{
+					System.out.println("+------------------------------------------------+");
+					System.out.println("|             ENTER USERNAME                     |");
+					System.out.println("+------------------------------------------------+");
+					String x = input.next();
+					System.out.println("+------------------------------------------------+");
+					System.out.println("|           ENTER PASSWORD                       |");
+					System.out.println("+------------------------------------------------+");
+					String y = input.next();
+					if(c==1)
+					{
+						boolean z = Loginc.signin(x,y);
+						if(z)
+						{
+							System.out.println("+------------------------------------------------+");
+							System.out.println("|                LOGIN SUCCESSFULL!              |");
+							System.out.println("+------------------------------------------------+");
+							status = 1;
+							Loginc.id = Loginc.search(x);
+						}
+						else {
+							System.err.println("+------------------------------------------------+");
+							System.err.println("|          INVALID USERNAME OR PASSWORD          |");
+							System.err.println("+------------------------------------------------+");
+							status = 0;
+						}
+					}
+					else if(c == 2)
+					{
+					 //boolean ret = Loginc.signup(x,y);
+					Loginc.signup(x,y);
+					status=0;
+					}
+				else {
+					System.err.println("+------------------------------------------------+");
+					System.err.println("|          INVALID INPUT. TRY AGAIN.             |");
+					System.err.println("+------------------------------------------------+");
+					status=0;
+					
+				}
+				}
+			
+			}while(status==0);
+			
+	//HARD CODED PART:
+			
+			Controller.addVehicle("Harry","1122");
+			Controller.addVehicle("Corpse","2211");
+			Controller.addRoad(11,"Road1",123);
+			Controller.addRoad(22,"Road2",456);
+			  
+			  ArrayList <Road> rd = new ArrayList<>();
+			  rd.add(Controller.return_road(11));
+			  rd.add(Controller.return_road(22));
+			  Controller.addJunction(11, "Junction1","One Way", rd);
+			  
+			 Traffic_Police p1=Controller.addPolice(33, "Police1",23, 10000, 2, "1c,street,NY");
+			  Traffic_Police p2=Controller.addPolice(44, "Police2",54, 100000, 4, "34,AL ave,NJ");
+			  
+			  ArrayList <Traffic_Police> tp = new ArrayList<>();
+			 tp.add(p1);
+			 tp.add(p2);
+			  ArrayList <Junction> jal = new ArrayList<>();
+			  jal.add(Controller.return_jn(11));
+			  Controller.addPoliceStation(1111, "Station1", tp, jal, 123456);
+			  
+//			  Controller.listVehicle();
+//			  Controller.listRoads();
+//			  Controller.listJunctions();
+//			  Controller.listPolice(1111);
+//			  Controller.listStations();
+			  
+	//END OF HARD CODE
+		
+			  int inp1,inp2 = -1; 
+			while (status==1)
+			{
 
-			System.out.println("+-------------------------------------------+");
-			System.out.println("|               0. LOGOUT                   |");
-			System.out.println("+-------------------------------------------+");
-			
-			//ADMIN
-			if(Loginc.userlist.get(Loginc.id).getauth() == 3)
-			{
-			
-			System.out.println("+-------------------------------------------+");
-			System.out.println("|              1. JUNCTIONS                 |");
-			System.out.println("+-------------------------------------------+");
-			
-			System.out.println("+-------------------------------------------+");
-			System.out.println("|              2. ROADS                     |");
-			System.out.println("+-------------------------------------------+");
-			
-			System.out.println("+-------------------------------------------+");
-			System.out.println("|              3. VEHICLES                  |");
-			System.out.println("+-------------------------------------------+");
-			
-			
-			System.out.println("+-------------------------------------------+");
-			System.out.println("|             4. POLICE STATIONS            |");
-			System.out.println("+-------------------------------------------+");
-			
-			
-			System.out.println("+-------------------------------------------+");
-			System.out.println("|             5. USERS                      |");
-			System.out.println("+-------------------------------------------+");
-			inp1=input.nextInt();
-			
-			if(inp1!=5 && inp1!=0){
-			System.out.println("+------------+    +--------+    +-----------+");
-			System.out.println("| 1. DISPLAY |    | 2. ADD |    | 3. DELETE |");
-			System.out.println("+------------+    +--------+    +-----------+");
-			inp2=input.nextInt();
-			}
-			switch(inp1)
-			{
-			case 0: 
+				System.out.println("+-------------------------------------------+");
+				System.out.println("|               0. LOGOUT                   |");
+				System.out.println("+-------------------------------------------+");
+				
+				//ADMIN
+				if(Loginc.userlist.get(Loginc.id).getauth() == 3)
+				{
+				
+				System.out.println("+-------------------------------------------+");
+				System.out.println("|              1. JUNCTIONS                 |");
+				System.out.println("+-------------------------------------------+");
+				
+				System.out.println("+-------------------------------------------+");
+				System.out.println("|              2. ROADS                     |");
+				System.out.println("+-------------------------------------------+");
+				
+				System.out.println("+-------------------------------------------+");
+				System.out.println("|              3. VEHICLES                  |");
+				System.out.println("+-------------------------------------------+");
+				
+				
+				System.out.println("+-------------------------------------------+");
+				System.out.println("|             4. POLICE STATIONS            |");
+				System.out.println("+-------------------------------------------+");
+				
+				
+				System.out.println("+-------------------------------------------+");
+				System.out.println("|             5. USERS                      |");
+				System.out.println("+-------------------------------------------+");
+				inp1=input.nextInt();
+				
+				if(inp1!=5 && inp1!=0){
+				System.out.println("+------------+    +--------+    +-----------+");
+				System.out.println("| 1. DISPLAY |    | 2. ADD |    | 3. DELETE |");
+				System.out.println("+------------+    +--------+    +-----------+");
+				inp2=input.nextInt();
+				}
+				switch(inp1)
+				{
+				case 0: 
+						System.out.println("+--------------------------+");
+						System.out.println("|      LOGGING OUT...      |");
+						System.out.println("+--------------------------+");
+						status =0;
+						Loginc.id = -1;
+						break;
+				case 1: switch(inp2)
+						{
+							case 1: Controller.listJunctions();
+									break;
+							case 2: ajunction();
+									break; 
+						    	case 3: djunction();
+									break;
+							default:System.err.println("INVALID INPUT");		
+						}
+						break;
+						
+				case 2: switch(inp2)
+				{
+					case 1: Controller.listRoads();
+							break;
+					case 2: aroad();
+							break;
+					case 3: droad();
+							break;	
+					default:System.err.println("INVALID INPUT");		
+				}
+				break;	
+				
+				case 3: switch(inp2)
+				{
+					case 1: Controller.listVehicle();
+							break;
+					case 2: avehicle();
+							break;
+					case 3: dvehicle();
+							break;
+					default:System.err.println("INVALID INPUT");		
+				}
+				break;
+				case 4: switch(inp2)
+				{
+					case 1: Controller.listStations();
+						break;
+					case 2: astation();
+						break;
+					case 3: dstation();
+						break;
+				}
+				break;
+				case 5: usermg();
+					break;
+				default:System.err.println("INVALID INPUT");
+				}
+				}
+				
+				
+				
+				
+				else if(Loginc.userlist.get(Loginc.id).getauth() == 1)
+				{
+				//TRAFFIC POLICE
+				System.out.println("+---------------------------------+                +---------------------------------+ ");
+				System.out.println("|       1. ACCIDENT LOG           |                | 2. TRAFFIC VIOLATION LOG        |");
+				System.out.println("+---------------------------------+                +---------------------------------+ ");
+				System.out.println("======================================================================================= ");
+				c1 = input.nextInt();
+				if(c1 == 0)
+				{
 					System.out.println("+--------------------------+");
 					System.out.println("|      LOGGING OUT...      |");
 					System.out.println("+--------------------------+");
 					status =0;
 					Loginc.id = -1;
-					break;
-			case 1: switch(inp2)
-					{
-						case 1: Controller.listJunctions();
-								break;
-						case 2: ajunction();
-								break; 
-					    	case 3: djunction();
-								break;
-						default:System.err.println("INVALID INPUT");		
-					}
-					break;
-					
-			case 2: switch(inp2)
-			{
-				case 1: Controller.listRoads();
-						break;
-				case 2: aroad();
-						break;
-				case 3: droad();
-						break;	
-				default:System.err.println("INVALID INPUT");		
-			}
-			break;	
-			
-			case 3: switch(inp2)
-			{
-				case 1: Controller.listVehicle();
-						break;
-				case 2: avehicle();
-						break;
-				case 3: dvehicle();
-						break;
-				default:System.err.println("INVALID INPUT");		
-			}
-			break;
-			case 4: switch(inp2)
-			{
-				case 1: Controller.listStations();
-					break;
-				case 2: astation();
-					break;
-				case 3: dstation();
-					break;
-			}
-			break;
-			case 5: usermg();
-				break;
-			default:System.err.println("INVALID INPUT");
-			}
-			}
-			
-			
-			
-			
-			else if(Loginc.userlist.get(Loginc.id).getauth() == 1)
-			{
-			//TRAFFIC POLICE
-			System.out.println("+---------------------------------+                +---------------------------------+ ");
-			System.out.println("|       1. ACCIDENT LOG           |                | 2. TRAFFIC VIOLATION LOG        |");
-			System.out.println("+---------------------------------+                +---------------------------------+ ");
-			System.out.println("======================================================================================= ");
-			c1 = input.nextInt();
-			if(c1 == 0)
-			{
-				System.out.println("+--------------------------+");
-				System.out.println("|      LOGGING OUT...      |");
-				System.out.println("+--------------------------+");
-				status =0;
-				Loginc.id = -1;
-			}
-			
-			else if(c1 ==1||c1 ==2)
-			{
-//				System.out.println("+-------------------------------------------+");
-//				System.out.println("|		          1. DISPLAY LOG		    |");
-//				System.out.println("+-------------------------------------------+");
-//				System.out.println("+-------------------------------------------+");
-//				System.out.println("|		          2. ADD LOG     		    |");
-//				System.out.println("+-------------------------------------------+");
-//				System.out.println("+-------------------------------------------+");
-//				System.out.println("|		          3. DELETE LOG  		    |");
-//				System.out.println("+-------------------------------------------+");
-				System.out.println("+-------------------------------------------+");
-				System.out.println("|		1. DISPLAY 		    |");
-				System.out.println("+-------------------------------------------+");
-				System.out.println("+-------------------------------------------+");
-				System.out.println("|		2. ADD 		    	    |");
-				System.out.println("+-------------------------------------------+");
-				System.out.println("+-------------------------------------------+");
-				System.out.println("|		3. DELETE 		    |");
-				System.out.println("+-------------------------------------------+");
-				c2 = input.nextInt();
-				if(c1==1)
-				{
-					switch(c2)
-					{
-					case 1: Controller.listAccident();
-							break;
-					case 2: aaccident();
-							break;
-					case 3: Controller.deleteAccident();
-							break;
-					default: System.out.println("INVALID INPUT");		
-					}
-				
 				}
-				else if (c1 == 2)
+				
+				else if(c1 ==1||c1 ==2)
 				{
-					switch(c2)
+//					System.out.println("+-------------------------------------------+");
+//					System.out.println("|		          1. DISPLAY LOG		    |");
+//					System.out.println("+-------------------------------------------+");
+//					System.out.println("+-------------------------------------------+");
+//					System.out.println("|		          2. ADD LOG     		    |");
+//					System.out.println("+-------------------------------------------+");
+//					System.out.println("+-------------------------------------------+");
+//					System.out.println("|		          3. DELETE LOG  		    |");
+//					System.out.println("+-------------------------------------------+");
+					System.out.println("+-------------------------------------------+");
+					System.out.println("|		1. DISPLAY 		    |");
+					System.out.println("+-------------------------------------------+");
+					System.out.println("+-------------------------------------------+");
+					System.out.println("|		2. ADD 		    	    |");
+					System.out.println("+-------------------------------------------+");
+					System.out.println("+-------------------------------------------+");
+					System.out.println("|		3. DELETE 		    |");
+					System.out.println("+-------------------------------------------+");
+					c2 = input.nextInt();
+					if(c1==1)
 					{
-					case 1: Controller.listViolation();
-							break;
-					case 2: aviolation();
-							break;
-					case 3: Controller.deleteViolation();
-							break;
-					default: System.out.println("INVALID INPUT");		
+						switch(c2)
+						{
+						case 1: Controller.listAccident();
+								break;
+						case 2: aaccident();
+								break;
+						case 3: Controller.deleteAccident();
+								break;
+						default: System.out.println("INVALID INPUT");		
+						}
+					
+					}
+					else if (c1 == 2)
+					{
+						switch(c2)
+						{
+						case 1: Controller.listViolation();
+								break;
+						case 2: aviolation();
+								break;
+						case 3: Controller.deleteViolation();
+								break;
+						default: System.out.println("INVALID INPUT");		
+						}	
 					}	
-				}	
-			}
-			else
-				System.out.println("INVALID INPUT");
-			}
+				}
+				else
+					System.out.println("INVALID INPUT");
+				}
+				
+				else if(Loginc.userlist.get(Loginc.id).getauth() == 0)
+				{
+				//PENALTY PAY
+				System.out.println("+--------------------------+");
+				System.out.println("|   1. CHECK VIOLATION     |");
+				System.out.println("+--------------------------+");
+				inp2 = input.nextInt();
+				if(inp2 == 0) {
+					System.out.println("+--------------------------+");
+					System.out.println("|      LOGGING OUT...      |");
+					System.out.println("+--------------------------+");
+					status =0;
+					Loginc.id = -1;
+				}
+				else if(inp2 == 1)
+				{
+					//Controller.listVehicle();
+					 System.out.println("--------------------------");
+				     System.out.println();
+				     System.out.println("Enter Reg number : \n");
+				     String reg = input.next();
+				     Vehicle r =Controller.return_vehicle(reg);
+				     if(r!=null)
+				    	 Controller.CheckViolation(reg);
+				     else
+				    	 System.err.println("Vehicle does not exist"); 
+				}
+				}
+				}
 			
-			else if(Loginc.userlist.get(Loginc.id).getauth() == 0)
-			{
-			//PENALTY PAY
-			System.out.println("+--------------------------+");
-			System.out.println("|   1. CHECK VIOLATION     |");
-			System.out.println("+--------------------------+");
-			inp2 = input.nextInt();
-			if(inp2 == 0) {
-				System.out.println("+--------------------------+");
-				System.out.println("|      LOGGING OUT...      |");
-				System.out.println("+--------------------------+");
-				status =0;
-				Loginc.id = -1;
-			}
-			else if(inp2 == 1)
-			{
-				//Controller.listVehicle();
-				 System.out.println("--------------------------");
-			     System.out.println();
-			     System.out.println("Enter Reg number : \n");
-			     String reg = input.next();
-			     Vehicle r =Controller.return_vehicle(reg);
-			     if(r!=null)
-			    	 Controller.CheckViolation(reg);
-			     else
-			    	 System.err.println("Vehicle does not exist"); 
-			}
-			}
-			}
+		}
+		//input.close();
 
-input.close();
+
 	}
 
 }
