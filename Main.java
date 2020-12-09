@@ -382,7 +382,46 @@ static void dstation()
     System.out.println("--------------------------");
 }
 
-
+public static void usermg()
+	{
+		String u,p;
+		Scanner s = new Scanner(System.in);
+		System.out.println("+-------------------------------------------+");
+        	System.out.println("|               MANAGE USERS                |");
+        	System.out.println("+-------------------------------------------+");
+		System.out.println("+--------------+   +-----------------+  +-----------------+  +------------------+  +----------------------+");
+        	System.out.println("| 1. ADD USER  |   | 2. DELETE USER  |  | 3. MODIFY USER  |  | 4. DISPLAY USER  |  | 5. DISPLAY USER LIST |");
+        	System.out.println("+--------------+   +-----------------+  +-----------------+  +------------------+  +----------------------+");
+		int c = Integer.parseInt(s.nextLine());
+		switch(c)
+		{
+			case 1: 
+				System.out.println("Enter username");
+				u = s.nextLine();
+				System.out.println("Enter password");
+				p = s.nextLine();
+				Loginc.signup(u,p);
+				u = null;
+				p = null;
+				break;
+			case 2: 
+				System.out.println("Enter username");
+				u = s.nextLine();
+				Loginc.delete(u);
+				u = null;
+				break;
+			case 3:
+				System.out.println("Enter username");
+				u = s.nextLine();
+				Loginc.modify(u);
+				u = null;
+				break;
+			case 4:
+				Loginc.listusers();
+				u = null;
+				break;
+		}
+	}
 
 
 //MAIN
@@ -392,7 +431,7 @@ static void dstation()
 		input = new Scanner(System.in);
 		//Scanner input = new Scanner(System.in);
 		 int c1,c2,c,status=0;
-		  System.out.println("\t\t\t\t\t  _______         __  __ _                             \r\n"
+	       System.out.println("\t\t\t\t\t  _______         __  __ _                             \r\n"
 		  		+ "\t\t\t\t\t |__   __|       / _|/ _(_)                            \r\n"
 		  		+ "\t\t\t\t\t    | |_ __ __ _| |_| |_ _  ___                        \r\n"
 		  		+ "\t\t\t\t\t    | | '__/ _` |  _|  _| |/ __|                       \r\n"
@@ -497,47 +536,61 @@ static void dstation()
 //END OF HARD CODE
 	
 		  
-		if (status==1)
+		if (Loginc.status==1)
 		{
 			//ADMIN
+			if(Loginc)
 			int inp1,inp2;
 			System.out.println("+-------------------------------------------+");
-			System.out.println("|		1. DISPLAY 		    |");
+			System.out.println("|		1. JUNCTIONS 		        |");
 			System.out.println("+-------------------------------------------+");
+			
 			System.out.println("+-------------------------------------------+");
-			System.out.println("|		2. ADD 		    |");
+			System.out.println("|		2. ROADS	                |");
 			System.out.println("+-------------------------------------------+");
+			
 			System.out.println("+-------------------------------------------+");
-			System.out.println("|		3. DELETE 		    |");
+			System.out.println("|		3. VEHICLES 		        |");
+			System.out.println("+-------------------------------------------+");
+			
+			
+			System.out.println("+-------------------------------------------+");
+			System.out.println("|		4. POLICE STATIONS 	        |");
+			System.out.println("+-------------------------------------------+");
+			
+			
+			System.out.println("+-------------------------------------------+");
+			System.out.println("|		5. USERS 		        |");
 			System.out.println("+-------------------------------------------+");
 			inp1=input.nextInt();
-			System.out.println("1. JUNCTION\n2.ROAD\n3.VEHICLE\n4.POLICE STATION\n");
+			
+			if(inp1!==5){
+			System.out.println("+------------+    +--------+    +-----------+");
+			System.out.println("| 1. DISPLAY |    | 2. ADD |    | 3. DELETE |");
+			System.out.println("+------------+    +--------+    +-----------+");
 			inp2=input.nextInt();
+			}
 			switch(inp1)
 			{
 			case 1: switch(inp2)
 					{
 						case 1: Controller.listJunctions();
 								break;
-						case 2: Controller.listRoads();
+						case 2: ajunction();
 								break; 
-					    case 3: Controller.listVehicle();
+					    	case 3: djunction();
 								break;
-						case 4: Controller.listStations();
-								break;	
 						default:System.err.println("INVALID INPUT");		
 					}
 					break;
 					
 			case 2: switch(inp2)
 			{
-				case 1: ajunction();
+				case 1: Controller.listRoads();
 						break;
 				case 2: aroad();
 						break;
-				case 3: avehicle();
-						break;
-				case 4: astation();
+				case 3: droad();
 						break;	
 				default:System.err.println("INVALID INPUT");		
 			}
@@ -545,17 +598,25 @@ static void dstation()
 			
 			case 3: switch(inp2)
 			{
-				case 1: djunction();
+				case 1: Controller.listVehicles();
 						break;
-				case 2: droad();
+				case 2: avehicle();
 						break;
 				case 3: dvehicle();
 						break;
-				case 4: dstation();
-						break;	
 				default:System.err.println("INVALID INPUT");		
 			}
-			break;
+			case 4: switch(inp2)
+			{
+				case 1: Controller.listStations();
+					break;
+				case 2: astation();
+					break;
+				case 3: dstation();
+					break;
+			}
+			case 5: usermg();
+				break;
 			default:System.err.println("INVALID INPUT");
 			}
 			
