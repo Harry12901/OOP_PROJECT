@@ -3,18 +3,14 @@ import java.util.Scanner;
 
 public class Controller {
 	
-	
+//	
 //ARRAY LIST:
 	static ArrayList<Road> Roads = new ArrayList<>();
     static ArrayList<Junction> Junctions = new ArrayList<>();
     static ArrayList<Traffic_Police> TrafficPolice = new ArrayList<>();
     static ArrayList<Police_Station> PoliceStations = new ArrayList<>();
-    static ArrayList<Logs> log  = new ArrayList<>();
-    static ArrayList<AccidentLog> alog  = new ArrayList<>();
-    static ArrayList<TrafficViolationLog> vlog = new ArrayList<>();
-    static ArrayList<Vehicle> vehicle = new ArrayList<>();
     
-//RETURN FUNCTIONS - checks if the required object exists  
+  //RETURN FUNCTIONS - checks if the required object exists    
     public static Road return_road(int RID){
         for(int i=0;i<Roads.size();i++){
             if(RID == Roads.get(i).RoadId){
@@ -52,57 +48,15 @@ public class Controller {
         return null;
     }
     
-    
-    public static Logs return_log(int LID){
-        for(int i=0;i<log.size();i++){
-            if(LID == log.get(i).LogID){
-                return log.get(i);
-            }
-        }
-        return null;
-    }
-  
-    public static AccidentLog return_accident(int AID){
-        for(int i=0;i<alog.size();i++){
-            if(AID == alog.get(i).AccID){
-                return alog.get(i);
-            }
-        }
-        return null;
-    }
-
-    public static TrafficViolationLog return_violation(int VID){
-        for(int i=0;i<vlog.size();i++){
-            if(VID == vlog.get(i).VID){
-                return vlog.get(i);
-            }
-        }
-        return null;
-    }
-    
-    public static Vehicle return_vehicle(String regno){
-        for(int i=0;i<vehicle.size();i++){
-            if(regno.equals(vehicle.get(i).Regno) ){
-                return vehicle.get(i);
-                
-            }
-        }
-        return null;
-    }
-    
   //ADD:  
     public static void addRoad(int RID,String Name,double Length){
       Roads.add(new Road(RID,Name,Length));
-      System.out.println("Road added successfully");
-      System.out.println();
-      System.out.println("--------------------------");
+      
    }
 
     public static void addJunction(int JID, String Name,String Type, ArrayList<Road> conn_roads){
         Junctions.add(new Junction(JID,Name,Type,conn_roads));
-        System.out.println("Junction added successfully");
-        System.out.println();
-        System.out.println("--------------------------");
+        
     }
     
     public static Traffic_Police addPolice(int PID,String Name,int age,int salary,int yoe,String address){
@@ -112,37 +66,9 @@ public class Controller {
     
     public static void addPoliceStation(int SID,String Name,ArrayList<Traffic_Police> police,ArrayList<Junction> junctions,int pinCode){
         PoliceStations.add(new Police_Station(SID,Name,police,junctions,pinCode));
-        System.out.println("Police Station added successfully");
-        System.out.println();
-        System.out.println("--------------------------");
+        
     }
-    
-    public static void addVehicle(String name,String regno) {
-        vehicle.add(new Vehicle(regno,name));
-    	System.out.println("Vehicle added successfully");
-        System.out.println();
-        System.out.println("--------------------------");
-    }
- 
-    
-
-    public static void addViolation(int VID,double penalty,String reason,String regno,double speed,int RID,int PID,int SID){
-                	vlog.add(new TrafficViolationLog(VID,penalty,reason,regno,speed,RID,PID,SID,"Violation"));
-                	System.out.println("Violation entry added successfully");
-                    System.out.println();
-                    System.out.println("--------------------------");
-
-    }
-    
-
-    public static void addAccident(int AID,String damage,String reason,int ni,int nov,ArrayList<String> vehicles,int RID,int PID,int SID){
-                	alog.add(new AccidentLog(AID,damage,reason,ni,nov,vehicles,RID,PID,SID,"Accident"));
-                    System.out.println("Accident entry added successfully");
-                    System.out.println();
-                    System.out.println("--------------------------");
-    }
-    
- //DISPLAY:   
+//DISPLAY
     
     public static void listJunctions(){
         System.out.println("--------------------------");
@@ -207,6 +133,117 @@ public class Controller {
         System.out.println("--------------------------");
     }
     
+//DELETE
+    public static void deleteRoad(Road rd){
+        
+        Roads.remove(rd);
+        System.out.println("Road Successfully deleted");
+
+}
+
+public static void deleteJunction(Junction jn){
+        Junctions.remove(jn);
+        System.out.println("Junction Successfully deleted");
+  }
+
+public static void deletePoliceStation(Police_Station ps){
+        PoliceStations.remove(ps);
+        System.out.println("Police Station Successfully deleted");
+}
+
+
+public static void deletePolice(){
+    System.out.println("--------------------------");
+    System.out.println();
+    Scanner input = new Scanner(System.in);
+    System.out.print("Enter Police Station ID : ");
+    int SID = input.nextInt();
+    Police_Station ps = return_police_station(SID);
+    if(ps == null){
+        System.err.println("Police Station does not exist");
+    }
+    else{
+        System.out.println("Enter Police ID : ");
+        int pid = input.nextInt();
+        Traffic_Police police = return_police(ps,pid);
+        if(police == null){
+            System.out.println("Traffic Police does not exist");
+        }
+        else{
+            ps.Personnel.remove(police);
+        }
+        System.out.println("Police Successfully deleted");
+    }
+    System.out.println();
+    System.out.println("--------------------------");
+
+    input.close();
+
+}
+
+    
+//
+//ARRAY LIST    
+    static ArrayList<Logs> log  = new ArrayList<>();
+    static ArrayList<AccidentLog> alog  = new ArrayList<>();
+    static ArrayList<TrafficViolationLog> vlog = new ArrayList<>();
+    static ArrayList<Vehicle> vehicle = new ArrayList<>();
+    
+//RETURN FUNCTIONS - checks if the required object exists  
+    public static Logs return_log(int LID){
+        for(int i=0;i<log.size();i++){
+            if(LID == log.get(i).LogID){
+                return log.get(i);
+            }
+        }
+        return null;
+    }
+  
+    public static AccidentLog return_accident(int AID){
+        for(int i=0;i<alog.size();i++){
+            if(AID == alog.get(i).AccID){
+                return alog.get(i);
+            }
+        }
+        return null;
+    }
+
+    public static TrafficViolationLog return_violation(int VID){
+        for(int i=0;i<vlog.size();i++){
+            if(VID == vlog.get(i).VID){
+                return vlog.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public static Vehicle return_vehicle(String regno){
+        for(int i=0;i<vehicle.size();i++){
+            if(regno.equals(vehicle.get(i).Regno) ){
+                return vehicle.get(i);
+                
+            }
+        }
+        return null;
+    }
+    
+  //ADD:  
+    public static void addVehicle(String name,String regno) {
+        vehicle.add(new Vehicle(regno,name));
+    }
+ 
+    
+
+    public static void addViolation(int VID,double penalty,String reason,String regno,double speed,int RID,int PID,int SID){
+                	vlog.add(new TrafficViolationLog(VID,penalty,reason,regno,speed,RID,PID,SID,"Violation"));
+    }
+    
+
+    public static void addAccident(int AID,String damage,String reason,int ni,int nov,ArrayList<String> vehicles,int RID,int PID,int SID){
+                	alog.add(new AccidentLog(AID,damage,reason,ni,nov,vehicles,RID,PID,SID,"Accident"));        
+    }
+    
+ //DISPLAY: 
     public static void listVehicle(){
         System.out.println("--------------------------");
         System.out.println();
@@ -219,7 +256,6 @@ public class Controller {
         }
         System.out.println("--------------------------");
     }
-
     public static void listViolation(){
         System.out.println("--------------------------");
         System.out.println();
@@ -270,7 +306,7 @@ public class Controller {
             System.out.print("Vehicles involved : ");
             System.out.println(alog.get(i).regnos);
             System.out.print("Road ID : ");
-            System.out.println(vlog.get(i).RoadID);
+            System.out.println(alog.get(i).RoadID);
             System.out.print("Police ID : ");
             System.out.println(alog.get(i).PoliceID);
             System.out.print("Station ID : ");
@@ -295,53 +331,7 @@ public class Controller {
         System.out.println("--------------------------");
     }
     
-    public static void deleteRoad(Road rd){
-        
-            Roads.remove(rd);
-            System.out.println("Road Successfully deleted");
-
-    }
-
-    public static void deleteJunction(Junction jn){
-            Junctions.remove(jn);
-            System.out.println("Junction Successfully deleted");
-      }
-
-    public static void deletePoliceStation(Police_Station ps){
-            PoliceStations.remove(ps);
-            System.out.println("Police Station Successfully deleted");
-    }
-
    
-    public static void deletePolice(){
-        System.out.println("--------------------------");
-        System.out.println();
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter Police Station ID : ");
-        int SID = input.nextInt();
-        Police_Station ps = return_police_station(SID);
-        if(ps == null){
-            System.err.println("Police Station does not exist");
-        }
-        else{
-            System.out.println("Enter Police ID : ");
-            int pid = input.nextInt();
-            Traffic_Police police = return_police(ps,pid);
-            if(police == null){
-                System.out.println("Traffic Police does not exist");
-            }
-            else{
-                ps.Personnel.remove(police);
-            }
-            System.out.println("Police Successfully deleted");
-        }
-        System.out.println();
-        System.out.println("--------------------------");
-
-        input.close();
-
-    }
-    
     public static void deleteViolation(){
         System.out.println("--------------------------");
         System.out.println();
