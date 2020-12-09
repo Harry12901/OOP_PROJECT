@@ -3,19 +3,8 @@ import java.util.Scanner;
 public class Main {
 
 	static Scanner input;
+//
 //ADD	
-	static void avehicle()
-	{
-		input = new Scanner(System.in);
-		System.out.println("ADD VEHICLE");
-	  	System.out.println("--------------------------");
-        System.out.println();
-        System.out.println("Enter Name : ");
-        String name = input.next();
-        System.out.println("Enter Registration number : ");
-        String regno = input.next();
-        Controller.addVehicle(name,regno);
-	}
 	
 	static void aroad()
 	{
@@ -30,6 +19,9 @@ public class Main {
 	      System.out.println("Enter Length : ");
 	      double Length = input.nextDouble();
 	      Controller.addRoad(RID,Name,Length);
+	      System.out.println("Road added successfully");
+	      System.out.println();
+	      System.out.println("--------------------------");
 	     // Controller.listRoads();
 	}
 	
@@ -64,6 +56,9 @@ public class Main {
 	        }
 	        
 	       Controller.addJunction(JID, jName, Type, conn_roads);
+	       System.out.println("Junction added successfully");
+	        System.out.println();
+	        System.out.println("--------------------------");
 	      // Controller.listJunctions();
 	}
 	
@@ -140,6 +135,9 @@ public class Main {
 
 	      }
 	      Controller.addPoliceStation(SID, sName, police, junctions, pinCode);
+	      System.out.println("Police Station added successfully");
+	        System.out.println();
+	        System.out.println("--------------------------");
 }
 	
 static void apolice()
@@ -161,136 +159,7 @@ static void apolice()
      Controller.addPolice(PID, pName, age, salary, yoe, address);
     // Controller.listPolice(1111);
 }
-
-static void aviolation()
-{
-	input = new Scanner(System.in);
-	 System.out.println("--------------------------");
-     System.out.println();
-     System.out.println("Enter Violation ID : ");
-     int VID = input.nextInt();
-     System.out.println("Enter Registration number : ");
-     String regno = input.next();
-     System.out.println("Enter Speed : ");
-     double speed = input.nextDouble();
-     System.out.println("Enter Reason : ");
-     String reason = input.next();
-     System.out.println("Enter Penalty amount : ");
-     double penalty = input.nextDouble();
-     
-     System.out.println("Enter Road ID : ");
-     int RID = input.nextInt();
-     Road r = Controller.return_road(RID);
-     if(r == null){
-         System.err.println("Road does not exist"); 
-        }
-     else
-     {
-     	System.out.println("Enter Station ID : ");
-         int SID = input.nextInt();
-         Police_Station ps = Controller.return_police_station(SID);
-         if(ps == null){
-             System.err.println("Police Station does not exist");
-         }
-         else
-         {
-         	System.out.println("Enter Police ID : ");
-             int PID = input.nextInt();            
-             Traffic_Police police = Controller.return_police(ps,PID);
-             if(police == null){
-                 System.out.println("Traffic Police does not exist");
-             }
-             else
-             {
-            	 Controller.addViolation(VID, penalty, reason, regno, speed, RID, PID, SID);
-             }
-         }
-     } 
-}
-
-static void aaccident()
-{
-	input = new Scanner(System.in);
-	System.out.println("--------------------------");
-    System.out.println();
-    System.out.println("Enter Accident ID : ");
-    
-    int AID = input.nextInt();
-    System.out.println("Enter Number of People Injured : ");
-    int ni = input.nextInt();
-    System.out.println("Enter Damage caused : ");
-    String damage = input.next();
-    System.out.println("Enter Reason : ");
-    String reason = input.next();
-    System.out.println("Enter Number of Vehicles : ");
- 
-    ArrayList<String> vehicles = new ArrayList<>();
-    int nov = input.nextInt();
-    int i = 0;
-    while(i<nov){
-        System.out.println("Enter Registration Number"+(i+1)+" : "); //check if i+1 is working
-        String Regno = input.next();
-        Vehicle v = Controller.return_vehicle(Regno);
-        if(v == null){
-            System.err.println("Vehicle does not exist. Try again...");
-        }
-        else{
-            vehicles.add(Regno);
-            i++;
-        }
-
-    }
-    
-    System.out.println("Enter Road ID : ");
-    int RID = input.nextInt();
-    Road r = Controller.return_road(RID);
-    if(r == null){
-        System.err.println("Road does not exist"); 
-       }
-    else
-    {
-    	System.out.println("Enter Station ID : ");
-        int SID = input.nextInt();
-        Police_Station ps = Controller.return_police_station(SID);
-        if(ps == null){
-            System.err.println("Police Station does not exist");
-        }
-        else
-        {
-        	System.out.println("Enter Police ID : ");
-            int PID = input.nextInt();            
-            Traffic_Police police = Controller.return_police(ps,PID);
-            if(police == null){
-                System.out.println("Traffic Police does not exist");
-            }
-            else
-            {
-            	Controller.addAccident(AID, damage, reason, ni, nov, vehicles, RID, PID, SID);
-             }
-        }
-    }
-}
-
 //DELETE
-static void dvehicle()
-{
-	input = new Scanner(System.in);
-	System.out.println("--------------------------");
-    System.out.println();
-    System.out.print("Enter Registration Number : ");
-    String Regno = input.next();
-    Vehicle v = Controller.return_vehicle(Regno);
-
-    if(v == null){
-        System.err.println("Vehicle does not exist");
-        System.out.println();
-        System.out.println("--------------------------");
-    }
-    else{
-    	Controller.deleteVehicle(v);
-    	}
-}
-
 static void djunction()
 {
 	input = new Scanner(System.in);
@@ -381,6 +250,161 @@ static void dstation()
     System.out.println("--------------------------");
 }
 
+
+//
+//ADD
+static void avehicle()
+{
+	input = new Scanner(System.in);
+	System.out.println("ADD VEHICLE");
+  	System.out.println("--------------------------");
+    System.out.println();
+    System.out.println("Enter Name : ");
+    String name = input.next();
+    System.out.println("Enter Registration number : ");
+    String regno = input.next();
+    Controller.addVehicle(name,regno);
+    System.out.println("Vehicle added successfully");
+    System.out.println();
+    System.out.println("--------------------------");
+}
+
+static void aviolation()
+{
+	input = new Scanner(System.in);
+	 System.out.println("--------------------------");
+     System.out.println();
+     System.out.println("Enter Violation ID : ");
+     int VID = input.nextInt();
+     System.out.println("Enter Registration number : ");
+     String regno = input.next();
+     System.out.println("Enter Speed : ");
+     double speed = input.nextDouble();
+     System.out.println("Enter Reason : ");
+     String reason = input.next();
+     System.out.println("Enter Penalty amount : ");
+     double penalty = input.nextDouble();
+     
+     System.out.println("Enter Road ID : ");
+     int RID = input.nextInt();
+     Road r = Controller.return_road(RID);
+     if(r == null){
+         System.err.println("Road does not exist"); 
+        }
+     else
+     {
+     	System.out.println("Enter Station ID : ");
+         int SID = input.nextInt();
+         Police_Station ps = Controller.return_police_station(SID);
+         if(ps == null){
+             System.err.println("Police Station does not exist");
+         }
+         else
+         {
+         	System.out.println("Enter Police ID : ");
+             int PID = input.nextInt();            
+             Traffic_Police police = Controller.return_police(ps,PID);
+             if(police == null){
+                 System.out.println("Traffic Police does not exist");
+             }
+             else
+             {
+            	 Controller.addViolation(VID, penalty, reason, regno, speed, RID, PID, SID);
+            	 System.out.println("Violation entry added successfully");
+                 System.out.println();
+                 System.out.println("--------------------------");
+             }
+         }
+     } 
+}
+
+static void aaccident()
+{
+	input = new Scanner(System.in);
+	System.out.println("--------------------------");
+    System.out.println();
+    System.out.println("Enter Accident ID : ");
+    
+    int AID = input.nextInt();
+    System.out.println("Enter Number of People Injured : ");
+    int ni = input.nextInt();
+    System.out.println("Enter Damage caused : ");
+    String damage = input.next();
+    System.out.println("Enter Reason : ");
+    String reason = input.next();
+    System.out.println("Enter Number of Vehicles : ");
+ 
+    ArrayList<String> vehicles = new ArrayList<>();
+    int nov = input.nextInt();
+    int i = 0;
+    while(i<nov){
+        System.out.println("Enter Registration Number"+(i+1)+" : "); //check if i+1 is working
+        String Regno = input.next();
+        Vehicle v = Controller.return_vehicle(Regno);
+        if(v == null){
+            System.err.println("Vehicle does not exist. Try again...");
+        }
+        else{
+            vehicles.add(Regno);
+            i++;
+        }
+
+    }
+    
+    System.out.println("Enter Road ID : ");
+    int RID = input.nextInt();
+    Road r = Controller.return_road(RID);
+    if(r == null){
+        System.err.println("Road does not exist"); 
+       }
+    else
+    {
+    	System.out.println("Enter Station ID : ");
+        int SID = input.nextInt();
+        Police_Station ps = Controller.return_police_station(SID);
+        if(ps == null){
+            System.err.println("Police Station does not exist");
+        }
+        else
+        {
+        	System.out.println("Enter Police ID : ");
+            int PID = input.nextInt();            
+            Traffic_Police police = Controller.return_police(ps,PID);
+            if(police == null){
+                System.out.println("Traffic Police does not exist");
+            }
+            else
+            {
+            	Controller.addAccident(AID, damage, reason, ni, nov, vehicles, RID, PID, SID);
+            	 System.out.println("Accident entry added successfully");
+                 System.out.println();
+                 System.out.println("--------------------------");
+             }
+        }
+    }
+}
+
+//DELETE
+static void dvehicle()
+{
+	input = new Scanner(System.in);
+	System.out.println("--------------------------");
+    System.out.println();
+    System.out.print("Enter Registration Number : ");
+    String Regno = input.next();
+    Vehicle v = Controller.return_vehicle(Regno);
+
+    if(v == null){
+        System.err.println("Vehicle does not exist");
+        System.out.println();
+        System.out.println("--------------------------");
+    }
+    else{
+    	Controller.deleteVehicle(v);
+    	}
+}
+
+
 public static void usermg()
 	{
 		String u,p;
@@ -464,11 +488,18 @@ public static void usermg()
 			System.out.println("    |  WELCOME! PLEASE LOGIN IN OR SIGN UP  |");
 			System.out.println("    +---------------------------------------+");
 			
-			System.out.println("+----------------+                +-----------------+ ");
-			System.out.println("|Enter 1 to login|                |Enter 2 to signup|");
-			System.out.println("+----------------+                +-----------------+ ");
+			System.out.println("+------------+    +----------+    +-----------+");
+			System.out.println("| 0. EXIT    |    | 1. LOGIN |    | 2. SIGNUP |");
+			System.out.println("+------------+    +----------+    +-----------+");
 			System.out.println("===================================================== ");
 			c = input.nextInt();
+			if(c==0) 
+			{
+				System.out.println("THANK YOU");
+				System.exit(0);
+			}
+				
+			
 			if(c == 1 || c==2)
 			{
 				System.out.println("+------------------------------------------------+");
@@ -536,11 +567,11 @@ public static void usermg()
 		  jal.add(Controller.return_jn(11));
 		  Controller.addPoliceStation(1111, "Station1", tp, jal, 123456);
 		  
-		  Controller.listVehicle();
-		  Controller.listRoads();
-		  Controller.listJunctions();
-		  Controller.listPolice(1111);
-		  Controller.listStations();
+//		  Controller.listVehicle();
+//		  Controller.listRoads();
+//		  Controller.listJunctions();
+//		  Controller.listPolice(1111);
+//		  Controller.listStations();
 		  
 //END OF HARD CODE
 	
@@ -551,6 +582,7 @@ public static void usermg()
 			System.out.println("+-------------------------------------------+");
 			System.out.println("|               0. LOGOUT                   |");
 			System.out.println("+-------------------------------------------+");
+			
 			//ADMIN
 			if(Loginc.userlist.get(Loginc.id).getauth() == 3)
 			{
@@ -651,7 +683,7 @@ public static void usermg()
 			{
 			//TRAFFIC POLICE
 			System.out.println("+---------------------------------+                +---------------------------------+ ");
-			System.out.println("|      Enter 1 for ACCIDENT LOG   |                |Enter 2 for TRAFFIC VIOLATION LOG|");
+			System.out.println("|       1. ACCIDENT LOG           |                | 2. TRAFFIC VIOLATION LOG        |");
 			System.out.println("+---------------------------------+                +---------------------------------+ ");
 			System.out.println("======================================================================================= ");
 			c1 = input.nextInt();
@@ -666,14 +698,23 @@ public static void usermg()
 			
 			else if(c1 ==1||c1 ==2)
 			{
+//				System.out.println("+-------------------------------------------+");
+//				System.out.println("|		          1. DISPLAY LOG		    |");
+//				System.out.println("+-------------------------------------------+");
+//				System.out.println("+-------------------------------------------+");
+//				System.out.println("|		          2. ADD LOG     		    |");
+//				System.out.println("+-------------------------------------------+");
+//				System.out.println("+-------------------------------------------+");
+//				System.out.println("|		          3. DELETE LOG  		    |");
+//				System.out.println("+-------------------------------------------+");
 				System.out.println("+-------------------------------------------+");
-				System.out.println("|		          1. DISPLAY LOG		    |");
+				System.out.println("|		1. DISPLAY 		    |");
 				System.out.println("+-------------------------------------------+");
 				System.out.println("+-------------------------------------------+");
-				System.out.println("|		          2. ADD LOG     		    |");
+				System.out.println("|		2. ADD 		    	    |");
 				System.out.println("+-------------------------------------------+");
 				System.out.println("+-------------------------------------------+");
-				System.out.println("|		          3. DELETE LOG  		    |");
+				System.out.println("|		3. DELETE 		    |");
 				System.out.println("+-------------------------------------------+");
 				c2 = input.nextInt();
 				if(c1==1)
@@ -690,7 +731,7 @@ public static void usermg()
 					}
 				
 				}
-				else if (c2 == 2)
+				else if (c1 == 2)
 				{
 					switch(c2)
 					{
@@ -724,7 +765,7 @@ public static void usermg()
 			}
 			else if(inp2 == 1)
 			{
-				Controller.listVehicle();
+				//Controller.listVehicle();
 				 System.out.println("--------------------------");
 			     System.out.println();
 			     System.out.println("Enter Reg number : \n");
