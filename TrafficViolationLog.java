@@ -11,8 +11,7 @@ public class TrafficViolationLog extends Logs
 	public TrafficViolationLog( int id,double p,String reason, String regno,double speed,int roadid,int policeid,int stationid,String type)
 	{
 		super(id,roadid,policeid,stationid,type);
-		id=VID;
-	
+		this.VID=id;
 		this.PenaltyAmount=p;
 		this.Reason=reason;
 		this.regno=regno;
