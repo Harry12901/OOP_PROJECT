@@ -428,9 +428,10 @@ public static void deletePolice(){
                     System.out.println("--------------------------");
                     System.out.println("Pay Penalty (y/n) :");
                     String inp = input.next();
-                    if(inp=="y")
+                    if(inp.equals("y"))
                     {
                     	deleteViolation();
+                    	System.out.println("Penalty removed");
                     }
                     
                     System.out.println();
