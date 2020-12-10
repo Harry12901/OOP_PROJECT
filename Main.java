@@ -259,13 +259,11 @@ static void droad()
 
 static void dstation()
 {
-	input = new Scanner(System.in);
-	System.out.println("--------------------------");
+    input = new Scanner(System.in);
+    System.out.println("--------------------------");
     System.out.println();
-    Scanner input = new Scanner(System.in);
     System.out.print("Enter Police Station ID : ");
     int SID = input.nextInt();
-    input.close();
     Police_Station ps = Controller.return_police_station(SID);
 
     if(ps == null){
