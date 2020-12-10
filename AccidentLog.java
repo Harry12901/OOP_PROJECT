@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AccidentLog extends Logs
+final public class AccidentLog extends Logs
 {
 	Scanner input = new Scanner(System.in);
 	public int AccID;
