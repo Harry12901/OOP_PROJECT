@@ -43,7 +43,7 @@ public static void listuser(int x)
 		System.err.println("|            USER ACCOUNT DOESN'T EXIST          |");
 		System.err.println("+------------------------------------------------+");
 	}
-	
+}
 	public static void modify(String chu)
 	{
 		Scanner s = new Scanner(System.in);
