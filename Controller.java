@@ -48,6 +48,15 @@ public class Controller {
         return null;
     }
     
+    public static int return_police_station_index(int SID){
+        for(int i=0;i<PoliceStations.size();i++){
+            if(SID == PoliceStations.get(i).StationID){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
   //ADD:  
     public static void addRoad(int RID,String Name,double Length){
       Roads.add(new Road(RID,Name,Length));
@@ -65,9 +74,15 @@ public class Controller {
 
     
     public static void addPoliceStation(int SID,String Name,ArrayList<Traffic_Police> police,ArrayList<Junction> junctions,int pinCode){
-        PoliceStations.add(new Police_Station(SID,Name,police,junctions,pinCode));
-        
+        PoliceStations.add(new Police_Station(SID,Name,police,junctions,pinCode));   
     }
+    
+    public static void addPolice1(Police_Station ps,int i, int PID,String pName,int age, int salary,int yoe,String address){
+    	    PoliceStations.remove(ps);
+            ps.Personnel.add(new Traffic_Police(PID,pName,age,salary,yoe,address));
+            PoliceStations.add(i,ps);
+      }
+    
 //DISPLAY
     
     public static void listJunctions(){
@@ -133,6 +148,8 @@ public class Controller {
         System.out.println("--------------------------");
     }
     
+    
+    
 //DELETE
     public static void deleteRoad(Road rd){
         
@@ -151,35 +168,41 @@ public static void deletePoliceStation(Police_Station ps){
         System.out.println("Police Station Successfully deleted");
 }
 
-
-public static void deletePolice(){
-    System.out.println("--------------------------");
-    System.out.println();
-    Scanner input = new Scanner(System.in);
-    System.out.print("Enter Police Station ID : ");
-    int SID = input.nextInt();
-    Police_Station ps = return_police_station(SID);
-    if(ps == null){
-        System.err.println("Police Station does not exist");
-    }
-    else{
-        System.out.println("Enter Police ID : ");
-        int pid = input.nextInt();
-        Traffic_Police police = return_police(ps,pid);
-        if(police == null){
-            System.out.println("Traffic Police does not exist");
-        }
-        else{
-            ps.Personnel.remove(police);
-        }
-        System.out.println("Police Successfully deleted");
-    }
-    System.out.println();
-    System.out.println("--------------------------");
-
-    input.close();
+public static void deletePolice(Police_Station ps,int i, Traffic_Police police){
+    
+        	PoliceStations.remove(ps);
+        	ps.Personnel.remove(police);
+        	PoliceStations.add(i, ps);
 
 }
+//public static void deletePolice(){
+//    System.out.println("--------------------------");
+//    System.out.println();
+//    Scanner input = new Scanner(System.in);
+//    System.out.print("Enter Police Station ID : ");
+//    int SID = input.nextInt();
+//    Police_Station ps = return_police_station(SID);
+//    if(ps == null){
+//        System.err.println("Police Station does not exist");
+//    }
+//    else{
+//        System.out.println("Enter Police ID : ");
+//        int pid = input.nextInt();
+//        Traffic_Police police = return_police(ps,pid);
+//        if(police == null){
+//            System.out.println("Traffic Police does not exist");
+//        }
+//        else{
+//            ps.Personnel.remove(police);
+//        }
+//        System.out.println("Police Successfully deleted");
+//    }
+//    System.out.println();
+//    System.out.println("--------------------------");
+//
+//    input.close();
+//
+//}
 
     
 //
@@ -365,13 +388,7 @@ public static void deletePolice(){
 
     
     
-    public static void deleteAccident(){
-        System.out.println("--------------------------");
-        System.out.println();
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter Accident ID : ");
-        int AID = input.nextInt();
-        //input.close();
+    public static void deleteAccident(int AID){
         AccidentLog a = return_accident(AID);
         Logs l = return_log(AID);
         
