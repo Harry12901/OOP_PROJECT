@@ -140,24 +140,55 @@ public class Main {
 	        System.out.println("--------------------------");
 }
 	
-static void apolice()
+//static void apolice()
+//{
+//	input = new Scanner(System.in);
+//	System.out.println("ADD POLICE");
+//    System.out.print("Enter Police ID : ");
+//     int PID = input.nextInt();
+//     System.out.print("Enter Name : ");
+//     String pName = input.next();
+//     System.out.print("Enter Age : ");
+//     int age = input.nextInt();
+//     System.out.print("Enter Salary : ");
+//     int salary = input.nextInt();
+//     System.out.print("Enter Years Of Experience : ");
+//     int yoe = input.nextInt();
+//     System.out.print("Enter Address : ");
+//     String address = input.next();
+//     Controller.addPolice(PID, pName, age, salary, yoe, address);
+//    // Controller.listPolice(1111);
+//}
+
+static void apolice1()
 {
 	input = new Scanner(System.in);
 	System.out.println("ADD POLICE");
-    System.out.print("Enter Police ID : ");
-     int PID = input.nextInt();
-     System.out.print("Enter Name : ");
-     String pName = input.next();
-     System.out.print("Enter Age : ");
-     int age = input.nextInt();
-     System.out.print("Enter Salary : ");
-     int salary = input.nextInt();
-     System.out.print("Enter Years Of Experience : ");
-     int yoe = input.nextInt();
-     System.out.print("Enter Address : ");
-     String address = input.next();
-     Controller.addPolice(PID, pName, age, salary, yoe, address);
-    // Controller.listPolice(1111);
+	System.out.print("Enter Station ID : ");
+    int SID = input.nextInt();
+    Police_Station ps = Controller.return_police_station(SID);
+    if(ps == null) {
+    	System.err.println("Police Station does not exist");
+    }
+    else {
+    	System.out.print("Enter Police ID : ");
+        int PID = input.nextInt();
+        System.out.print("Enter Name : ");
+        String pName = input.next();
+        System.out.print("Enter Age : ");
+        int age = input.nextInt();
+        System.out.print("Enter Salary : ");
+        int salary = input.nextInt();
+        System.out.print("Enter Years Of Experience : ");
+        int yoe = input.nextInt();
+        System.out.print("Enter Address : ");
+        String address = input.next();
+        int i = Controller.return_police_station_index(SID);
+        Controller.addPolice1(ps, i, PID, pName, age, salary, yoe, address);
+        System.out.println("Police added successfully");
+        System.out.println("--------------------------");
+    }
+        
 }
 //DELETE
 static void djunction()
@@ -185,12 +216,9 @@ static void droad()
 	input = new Scanner(System.in);
 	System.out.println("--------------------------");
     System.out.println();
-    Scanner input = new Scanner(System.in);
     System.out.print("Enter Road ID : ");
     int RID = input.nextInt();
-    input.close();
     Road rd = Controller.return_road(RID);
-
     if(rd == null){
         System.err.println("Road does not exist");
     }
@@ -250,6 +278,40 @@ static void dstation()
     System.out.println("--------------------------");
 }
 
+static void dpolice(){
+	input = new Scanner(System.in);
+    System.out.println("--------------------------");
+    System.out.println();
+    System.out.print("Enter Police Station ID : ");
+    int SID = input.nextInt();
+    Police_Station ps = Controller.return_police_station(SID);
+    if(ps == null){
+        System.err.println("Police Station does not exist");
+    }
+    else{
+        System.out.println("Enter Police ID : ");
+        int pid = input.nextInt();
+        Traffic_Police police = Controller.return_police(ps,pid);
+        if(police == null){
+            System.err.println("Traffic Police does not exist");
+        }
+        else{
+            int i = Controller.return_police_station_index(SID);
+            Controller.deletePolice(ps, i, police);
+        }
+        System.out.println("Police Successfully deleted");
+    }
+    System.out.println();
+    System.out.println("--------------------------");
+}
+//LIST
+static void lpolice()
+{
+	input = new Scanner(System.in);
+	System.out.print("Enter Station ID: ");
+	int SID = input.nextInt();
+	Controller.listPolice(SID);
+}
 
 //
 //ADD
@@ -385,6 +447,15 @@ static void aaccident()
 }
 
 //DELETE
+static void daccident()
+{
+	input = new Scanner(System.in);
+	 System.out.println("--------------------------");
+     System.out.println();
+     System.out.print("Enter Accident ID : ");
+     int AID = input.nextInt();
+     Controller.deleteAccident(AID);
+}
 static void dvehicle()
 {
 	input = new Scanner(System.in);
@@ -408,40 +479,40 @@ static void dvehicle()
 public static void usermg()
 	{
 		String u,p;
-		Scanner s = new Scanner(System.in);
+		input = new Scanner(System.in);
 			System.out.println("+-------------------------------------------+");
         	System.out.println("|               MANAGE USERS                |");
         	System.out.println("+-------------------------------------------+");
         	System.out.println("+--------------+   +-----------------+  +-----------------+  +------------------+  +----------------------+");
         	System.out.println("| 1. ADD USER  |   | 2. DELETE USER  |  | 3. MODIFY USER  |  | 4. DISPLAY USER  |  | 5. DISPLAY USER LIST |");
         	System.out.println("+--------------+   +-----------------+  +-----------------+  +------------------+  +----------------------+");
-		int c = Integer.parseInt(s.nextLine());
+		int c = Integer.parseInt(input.nextLine());
 		switch(c)
 		{
 			case 1: 
 				System.out.println("Enter username");
-				u = s.nextLine();
+				u = input.nextLine();
 				System.out.println("Enter password");
-				p = s.nextLine();
+				p = input.nextLine();
 				Loginc.signup(u,p);
 				u = null;
 				p = null;
 				break;
 			case 2: 
 				System.out.println("Enter username");
-				u = s.nextLine();
+				u = input.nextLine();
 				Loginc.delete(u);
 				u = null;
 				break;
 			case 3:
 				System.out.println("Enter username");
-				u = s.nextLine();
+				u = input.nextLine();
 				Loginc.modify(u);
 				u = null;
 				break;
 			case 4:
 				System.out.println("Enter username");
-				u = s.nextLine();
+				u = input.nextLine();
 				Loginc.listuser(Loginc.search(u));
 				u = null;
 				break;
@@ -461,7 +532,6 @@ public static void usermg()
 		Loginc.userlist.add(new User("Police001", "Hello123", 1, "Sai Padmesh", 19, "M", 1234567800, "CBE"));
 		Loginc.userlist.add(new User("User001", "Hello123", 0, "Harini", 19, "F", 1234567000, "CBE"));
 		input = new Scanner(System.in);
-		//Scanner input = new Scanner(System.in);
 		 int c1,c2,c=0,status=0;
 	       System.out.println("\t\t\t\t\t  _______         __  __ _                             \r\n"
 		  		+ "\t\t\t\t\t |__   __|       / _|/ _(_)                            \r\n"
@@ -558,7 +628,7 @@ public static void usermg()
 			  rd.add(Controller.return_road(22));
 			  Controller.addJunction(11, "Junction1","One Way", rd);
 			  
-			 Traffic_Police p1=Controller.addPolice(33, "Police1",23, 10000, 2, "1c,street,NY");
+			  Traffic_Police p1=Controller.addPolice(33, "Police1",23, 10000, 2, "1c,street,NY");
 			  Traffic_Police p2=Controller.addPolice(44, "Police2",54, 100000, 4, "34,AL ave,NJ");
 			  
 			  ArrayList <Traffic_Police> tp = new ArrayList<>();
@@ -600,18 +670,20 @@ public static void usermg()
 				System.out.println("|              3. VEHICLES                  |");
 				System.out.println("+-------------------------------------------+");
 				
-				
 				System.out.println("+-------------------------------------------+");
 				System.out.println("|             4. POLICE STATIONS            |");
 				System.out.println("+-------------------------------------------+");
 				
+				System.out.println("+-------------------------------------------+");
+				System.out.println("|              5. POLICE                    |");
+				System.out.println("+-------------------------------------------+");
 				
 				System.out.println("+-------------------------------------------+");
-				System.out.println("|             5. USERS                      |");
+				System.out.println("|             6. USERS                      |");
 				System.out.println("+-------------------------------------------+");
 				inp1=input.nextInt();
 				
-				if(inp1!=5 && inp1!=0){
+				if(inp1!=6 && inp1!=0){
 				System.out.println("+------------+    +--------+    +-----------+");
 				System.out.println("| 1. DISPLAY |    | 2. ADD |    | 3. DELETE |");
 				System.out.println("+------------+    +--------+    +-----------+");
@@ -671,7 +743,18 @@ public static void usermg()
 						break;
 				}
 				break;
-				case 5: usermg();
+				case 5: switch(inp2)
+				{
+				case 1: lpolice();
+						break;
+				case 2: apolice1();
+						break;
+				case 3: dpolice();
+						break;
+				default:System.err.println("INVALID INPUT");		
+				}
+				break;
+				case 6: usermg();
 					break;
 				default:System.err.println("INVALID INPUT");
 				}
@@ -726,7 +809,7 @@ public static void usermg()
 								break;
 						case 2: aaccident();
 								break;
-						case 3: Controller.deleteAccident();
+						case 3: daccident();
 								break;
 						default: System.out.println("INVALID INPUT");		
 						}
@@ -779,11 +862,7 @@ public static void usermg()
 				}
 				}
 				}
-			
 		}
 		//input.close();
-
-
 	}
-
 }
